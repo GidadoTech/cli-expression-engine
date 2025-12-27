@@ -1,10 +1,19 @@
 from lexer import Lexer
-
-text = input("expr> ")
-lexer = Lexer(text)
+from parser import Parser
+from interpreter import Interpreter
 
 while True:
-    token = lexer.get_next_token()
-    print(token)
-    if token.type.name == "EOF":
-        break
+    text = input("calc > ")
+    if text.strip() == "":
+        continue
+
+    lexer = Lexer(text)
+    tokens = lexer.generate_tokens()
+
+    parser = Parser(tokens)
+    tree = parser.expr()
+
+    interpreter = Interpreter()
+    result = interpreter.visit(tree)
+
+    print(result)

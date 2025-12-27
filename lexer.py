@@ -52,3 +52,21 @@ class Lexer:
             return self.get_next_token()
 
         raise Exception(f"Invalid character: {self.current_char}")
+
+    def generate_tokens(self):
+        pass
+
+
+def generate_tokens(self):
+    tokens = []
+
+    while True:
+        token = self.get_next_token()
+        tokens.append(token)
+
+        if token.type == TokenType.EOF:
+            break
+
+    return tokens
+
+
